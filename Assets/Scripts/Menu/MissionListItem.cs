@@ -199,7 +199,7 @@ namespace OP2MissionHub.Menu
 
 			// We can upload files if the mission exists. This button won't be visible if the user does not have permission.
 			m_BtnUploadFile.interactable = true;
-			m_BtnDeleteFile.interactable = true;
+			m_BtnDeleteFile.interactable = missionData.fileNames.Count > 0;
 
 			// Read local mission version
 			if (File.Exists(CachePath.GetMissionDetailsFilePath(missionData.missionID)))
@@ -306,6 +306,7 @@ namespace OP2MissionHub.Menu
 					// Failure
 					Debug.Log(error);
 					InfoDialog.Create("", error.ToString());
+					canEdit = true;
 
 					if (WebConfig.DidSessionExpire(request))
 						AppController.LogOut();
