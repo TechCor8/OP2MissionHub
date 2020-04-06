@@ -5,10 +5,10 @@ namespace UserInterface.Dialogs
 {
 	public class ProgressDialog : MonoBehaviour
 	{
-		[SerializeField] private Button m_btnClose;
-		[SerializeField] private Image m_ProgressCircle;
-		[SerializeField] private Text m_txtProgress;
-		[SerializeField] private Text m_txtStatus;
+		[SerializeField] private Button m_btnClose			= default;
+		[SerializeField] private Image m_ProgressCircle		= default;
+		[SerializeField] private Text m_txtProgress			= default;
+		[SerializeField] private Text m_txtStatus			= default;
 
 		private System.Action m_OnCancelCB;
 
