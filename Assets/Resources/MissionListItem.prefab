@@ -1287,7 +1287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1465,7 +1465,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InputTitle: {fileID: 4955831211980131241}
   m_InputDescription: {fileID: 4955831210259706352}
-  m_BtnGitHub: {fileID: 4955831211511352972}
   m_txtGitHub: {fileID: 4955831212189135774}
   m_InputDetails: {fileID: 4955831211129870339}
   m_Trusted: {fileID: 4955831210826074310}
@@ -2155,7 +2154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

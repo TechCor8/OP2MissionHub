@@ -84,9 +84,18 @@ namespace OP2MissionHub.Menu
 				m_CanEdit = value;
 				m_InputTitle.interactable = value;
 				m_InputDescription.interactable = value;
+				SetInputFieldRaycast(m_InputTitle, value);
+				SetInputFieldRaycast(m_InputDescription, value);
 				m_BtnEdit.GetComponentInChildren<Text>().text = value ? "Save" : "Edit";
 				if (value) hasAuthorPermissions = value;
 			}
+		}
+
+		private void SetInputFieldRaycast(InputField inputField, bool raycastTarget)
+		{
+			inputField.GetComponent<Image>().raycastTarget = raycastTarget;
+			foreach (Text text in inputField.GetComponentsInChildren<Text>())
+				text.raycastTarget = raycastTarget;
 		}
 
 		public string sdkVersion
