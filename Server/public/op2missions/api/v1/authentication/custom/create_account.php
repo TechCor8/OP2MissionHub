@@ -61,8 +61,8 @@ if (!$authUser->HasValidVersion($appVersion))
 	exit;
 }
 
-// Check IP Address rate limit (6 hour window)
-$db->Prepare('SELECT COUNT(1) FROM Users WHERE CreatedIPAddress=:CreatedIPAddress AND CreationDate > DATE_SUB(NOW(), INTERVAL 6 HOUR)');
+// Check IP Address rate limit (24 hour window)
+$db->Prepare('SELECT COUNT(1) FROM Users WHERE CreatedIPAddress=:CreatedIPAddress AND CreationDate > DATE_SUB(NOW(), INTERVAL 24 HOUR)');
 $params = array(':CreatedIPAddress' => $_SERVER['REMOTE_ADDR']);
 
 $db->Execute($params);
@@ -82,6 +82,18 @@ if ($count > 0)
 		echo CreateErrorResponse(13, 'Account limit reached.');
 		exit;
 	}
+}
+
+// Limit accounts to 10 per day (global)
+$db->Prepare('SELECT COUNT(1) FROM Users WHERE DATE(CreationDate) = CURDATE()');
+$db->Execute();
+
+$row = $db->FetchArray();
+
+if ($row[0] > 10)
+{
+	echo CreateErrorResponse(-1, 'Global daily account limit exceeded.');
+	exit;
 }
 
 // 1 = Valid
