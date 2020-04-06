@@ -40,6 +40,20 @@ if (!$session->IsValid())			{ echo CreateErrorResponse(-3, 'Invalid Session');		
 $user = new User($db, $userID);
 if ($user->IsBanned())				{ echo CreateErrorResponse(-3, 'Invalid Session');							exit; }
 
+// Limit missions to 2 per day (user)
+$db->Prepare('SELECT COUNT(1) FROM Missions WHERE AuthorID=:AuthorID AND DATE(CreatedDate) = CURDATE()');
+$params = array(':AuthorID' => $userID);
+				
+$db->Execute($params);
+
+$row = $db->FetchArray();
+
+if ($row[0] > 2)
+{
+	echo CreateErrorResponse(-1, 'Daily mission count exceeded.');
+	exit;
+}
+
 // Limit missions to 10 per day (global)
 $db->Prepare('SELECT COUNT(1) FROM Missions WHERE DATE(CreatedDate) = CURDATE()');
 $db->Execute();
