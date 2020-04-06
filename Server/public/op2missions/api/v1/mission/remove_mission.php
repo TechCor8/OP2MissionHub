@@ -76,12 +76,15 @@ while ($row = $db->FetchArray())
 	unlink($dirPath . '/' . $row[0]);
 
 // Delete mission directory
-$dirFiles = scandir($dirPath);
-if ($dirFiles !== false)
+if (file_exists($dirPath))
 {
-	$dirFiles = array_diff($dirFiles, array('.', '..'));
-	if (count($dirFiles) == 0)
-		rmdir($dirPath);
+	$dirFiles = scandir($dirPath);
+	if ($dirFiles !== false)
+	{
+		$dirFiles = array_diff($dirFiles, array('.', '..'));
+		if (count($dirFiles) == 0)
+			rmdir($dirPath);
+	}
 }
 
 // Remove mission 

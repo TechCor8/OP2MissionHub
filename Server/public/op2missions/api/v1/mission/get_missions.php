@@ -30,7 +30,11 @@ $missions = array();
 
 while ($row = $db->FetchDictionary())
 {
-	$row['FileNames'] = explode(',', $row['FileNames']);
+	if ($row['FileNames'] !== null)
+		$row['FileNames'] = explode(',', $row['FileNames']);
+	else
+		$row['FileNames'] = array();
+	
 	array_push($missions, $row);
 }
 
