@@ -10,6 +10,12 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
+#Ignore Hub cache that is generated from downloading missions
+/[Cc]ache/
+
+#ignore generated Hub config file
+hub.cfg
+
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 
