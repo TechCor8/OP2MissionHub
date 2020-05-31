@@ -21,7 +21,7 @@ namespace OP2MissionHub.Dialogs
 
 		public void OnClick_GitHub()
 		{
-			Application.OpenURL("https://github.com/TechCor8/OP2MissionHub/releases");
+			Application.OpenURL("https://github.com/TechCor8/OP2MissionHub");
 		}
 
 		public void OnClick_Forum()
