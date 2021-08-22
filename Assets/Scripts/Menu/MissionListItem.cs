@@ -668,9 +668,9 @@ namespace OP2MissionHub.Menu
 		private bool DidDownloadSucceed(UnityWebRequest request, bool showError)
 		{
 			string error = null;
-			if (request.isNetworkError)
+			if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.DataProcessingError)
 				error = "There was a communication error: " + request.error;
-			else if (request.isHttpError)
+			else if (request.result == UnityWebRequest.Result.ProtocolError)
 				error = "There was an HTTP error: " + request.error;
 
 			if (!string.IsNullOrEmpty(error))

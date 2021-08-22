@@ -73,9 +73,9 @@ namespace OP2MissionHub.Systems
 		/// <param name="request">The request to get errors from.</param>
 		public static string GetErrorString(UnityWebRequest request)
 		{
-			if (request.isNetworkError)
+			if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.DataProcessingError)
 				return "There was a communication error: " + request.error;
-			else if (request.isHttpError)
+			else if (request.result == UnityWebRequest.Result.ProtocolError)
 				return "There was an HTTP error: " + request.error;
 			else
 			{
@@ -103,7 +103,7 @@ namespace OP2MissionHub.Systems
 
 		public static bool DidSessionExpire(UnityWebRequest request)
 		{
-			if (request.isNetworkError || request.isHttpError)
+			if (request.result != UnityWebRequest.Result.Success)
 				return false;
 
 			JsonResponse response = JsonResponse.FromJson(request.downloadHandler.text);

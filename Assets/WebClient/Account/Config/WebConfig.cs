@@ -38,8 +38,6 @@ namespace FlexAS
 		{
 			UnityWebRequest request = UnityWebRequest.Post(url, postVars);
 
-			request.chunkedTransfer = false;
-
 			return request;
 		}
 
@@ -56,9 +54,9 @@ namespace FlexAS
 		/// <returns>The error object.</returns>
 		internal static ErrorResponse ProcessGenericErrors(UnityWebRequest request)
 		{
-			if (request.isNetworkError)
+			if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.DataProcessingError)
 				return new ErrorResponse("There was a communication error.", request.error, request);
-			else if (request.isHttpError)
+			else if (request.result == UnityWebRequest.Result.ProtocolError)
 				return new ErrorResponse("There was an HTTP error.", request.error, request);
 			else
 			{
